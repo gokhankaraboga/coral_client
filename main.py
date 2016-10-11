@@ -11,8 +11,8 @@ search_params = {'checkin': '2016-11-25', 'checkout': '2016-12-14', 'pax': '1',
                  'destination_code': '11260', 'client_nationality': 'tr',
                  'currency': 'USD'}
 
-a = Client(base64.b64decode('Z29raGFuLmthcmFib2dh'),
-           base64.b64decode('WWV0MTIzKys='))
+a = Client('username'
+           , 'password')
 
 response_1 = a.search(search_params)
 product_code = response_1[1]['results'][0]['products'][0]['code']
