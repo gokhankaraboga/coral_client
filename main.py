@@ -36,4 +36,3 @@ print 'cancel json object:', response_5, '\n'
 
 response_6 = a.bookings()
 print 'bookings json object:', response_6
-
