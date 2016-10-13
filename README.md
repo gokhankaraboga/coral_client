@@ -19,7 +19,7 @@
     In order to be able to use the library, please add the line below to
     your code
     
-    * from coral_client import Client
+    from coral_client import Client
     
 ### EXAMPLES : search(), availability(), provision(), book(), cancel() ###
 ``` python

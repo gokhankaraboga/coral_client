@@ -1,6 +1,5 @@
 import unittest
 from coral_client import Client
-import base64
 
 search_params = {'checkin': '2017-01-28', 'checkout': '2017-01-30', 'pax': '1',
                  'destination_code': '14bc7', 'client_nationality': 'tr',
@@ -20,8 +19,8 @@ In order to test search method with wrong parameters. There is no such
 destination code as above.
 '''
 
-a = Client(base64.b64decode('Z29raGFuLmthcmFib2dh'),
-           base64.b64decode('WWV0MTIzKys='))
+a = Client('username', 'password')
+'''Please enter your own login credentials'''
 
 search_response = a.search(search_params)
 search_response2 = a.search(search_params2)
