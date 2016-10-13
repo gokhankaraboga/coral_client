@@ -70,6 +70,8 @@
     Content-Type: application/json
     Vary: Accept
     Allow: OPTIONS, GET
+
+``` javascript
     
     {
         "count": 68, 
@@ -177,6 +179,7 @@
                     }
                 ]
             }, 
+```
 
 #### TESTS ####
     Every function on the client library is tested under various test cases.
