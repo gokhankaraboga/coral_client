@@ -22,7 +22,7 @@
     * from coral_client import Client
     
 ### EXAMPLES : search(), availability(), provision(), book(), cancel() ###
-    ``` python
+``` python
     from coral_client import Client
 
     '''
@@ -59,7 +59,7 @@
     
     response_6 = a.bookings()
     print 'bookings json object:', response_6
-    ```
+```
     
 
 #### RESPONSE ####
