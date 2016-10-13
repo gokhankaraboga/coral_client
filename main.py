@@ -3,8 +3,8 @@ import base64
 
 '''
 seach-availability-provision-book-cancel-bookings
-provision, book ve cancel post yapar
-search, availability ve bookings get yapar
+provision, book and cancel ----> POST
+search, availability and bookings ----> GET
 '''
 
 search_params = {'checkin': '2016-11-25', 'checkout': '2016-12-14', 'pax': '1',

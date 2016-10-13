@@ -19,7 +19,7 @@ class Client(object):
         response = requests.get(self.SEARCH_URL, params=search_params,
                                 auth=(self.username, self.password))
         if response.status_code != 200:
-            raise ValueError('Bad Request')
+            raise ValueError(response.json())
         return response.status_code, response.json()
 
     def availability(self, product_code):
@@ -27,41 +27,43 @@ class Client(object):
                                 auth=(self.username, self.password))
 
         if response.status_code != 200:
-            raise ValueError('Bad Request')
-        return response.json()
+            raise ValueError(response.json())
+        return response.status_code, response.json()
 
     def provision(self, product_code):
         response = requests.post(self.PROVISION_URL + product_code,
                                  auth=(self.username, self.password))
 
         if response.status_code != 200:
-            raise ValueError('Bad Request')
+            # return response.json()
+            raise ValueError(response.json())
 
-        return response.json()
+        return response.status_code, response.json(), response
 
     def book(self, provision_code):
         response = requests.post(self.BOOK_URL + provision_code,
                                  data={'name': '1,Gokhan,Karaboga,adult'},
                                  auth=(self.username, self.password))
         if response.status_code != 200:
-            raise ValueError('Bad Request')
+            raise ValueError(response.json())
+            # return response.json()
 
-        return response.json()
+        return response.status_code, response.json(), response
 
     def cancel(self, book_code):
         response = requests.post(self.CANCEL_URL + book_code,
                                  auth=(self.username, self.password))
 
         if response.status_code != 200:
-            raise ValueError('Bad Request')
+            raise ValueError(response.json())
 
-        return response.json()
+        return response.status_code, response.json(), response
 
     def bookings(self):
         response = requests.get(self.BOOKINGS_URL,
                                 auth=(self.username, self.password))
 
         if response.status_code != 200:
-            raise ValueError('Bad Request')
+            raise ValueError(response.json())
 
-        return response.json()
+        return response.status_code, response.json(), response
