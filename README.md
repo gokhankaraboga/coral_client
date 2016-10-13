@@ -185,7 +185,7 @@
     Every function on the client library is tested under various test cases.
     Availability unit test component can be seen below as a sample. Other
     components are to be found at test.py file.
-    
+``` python    
     def test_availability(self):
     self.assertEqual(self.availability_response[0], 200)
     self.assertTrue(
@@ -195,7 +195,7 @@
     '''Failed test case'''
     with self.assertRaises(TypeError):
         a.availability()
-    
+```    
 
 #### LICENSE ####
 
