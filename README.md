@@ -22,7 +22,7 @@
     * from coral_client import Client
     
 ### EXAMPLES : search(), availability(), provision(), book(), cancel() ###
-    ```python
+    ``` python
     from coral_client import Client
 
     '''
