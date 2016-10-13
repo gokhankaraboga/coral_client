@@ -9,7 +9,7 @@ setup(
     author='Gokhan Karaboga',
     author_email='gokhan.karaboga@metglobal.com',
     description='Hotelspro api client',
-    install_requires=['requests', 'base64'],
+    install_requires=['requests'],
     classifiers=(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
