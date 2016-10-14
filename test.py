@@ -36,6 +36,9 @@ class TestClass(unittest.TestCase):
     provision_response = a.provision(product_code)
     bookings_response = a.bookings()
 
+    def __init__(self, *args, **kwargs):
+        super(TestClass, self).__init__(*args, **kwargs)
+
     def test_search(self):
         self.assertEqual(search_response[0], 200)
         self.assertGreater(int(search_response[1]['count']), 0)
