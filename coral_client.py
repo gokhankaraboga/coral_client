@@ -15,24 +15,24 @@ class Client(object):
         self.username = username
         self.password = password
 
+        self.s = requests.Session()
+        self.s.auth = (self.username, self.password)
+
     def search(self, search_params):
-        response = requests.get(self.SEARCH_URL, params=search_params,
-                                auth=(self.username, self.password))
+        response = self.s.get(self.SEARCH_URL, params=search_params)
         if response.status_code != 200:
             raise ValueError(response.json())
         return response.status_code, response.json()
 
     def availability(self, product_code):
-        response = requests.get(self.AVAILABILITY_URL + product_code,
-                                auth=(self.username, self.password))
+        response = self.s.get(self.AVAILABILITY_URL + product_code)
 
         if response.status_code != 200:
             raise ValueError(response.json())
         return response.status_code, response.json()
 
     def provision(self, product_code):
-        response = requests.post(self.PROVISION_URL + product_code,
-                                 auth=(self.username, self.password))
+        response = self.s.post(self.PROVISION_URL + product_code)
 
         if response.status_code != 200:
             # return response.json()
@@ -41,9 +41,8 @@ class Client(object):
         return response.status_code, response.json(), response
 
     def book(self, provision_code, book_params):
-        response = requests.post(self.BOOK_URL + provision_code,
-                                 data=book_params,
-                                 auth=(self.username, self.password))
+        response = self.s.post(self.BOOK_URL + provision_code,
+                               data=book_params)
         if response.status_code != 200:
             raise ValueError(response.json())
             # return response.json()
@@ -51,8 +50,7 @@ class Client(object):
         return response.status_code, response.json(), response
 
     def cancel(self, book_code):
-        response = requests.post(self.CANCEL_URL + book_code,
-                                 auth=(self.username, self.password))
+        response = self.s.post(self.CANCEL_URL + book_code)
 
         if response.status_code != 200:
             raise ValueError(response.json())
@@ -60,8 +58,7 @@ class Client(object):
         return response.status_code, response.json(), response
 
     def bookings(self):
-        response = requests.get(self.BOOKINGS_URL,
-                                auth=(self.username, self.password))
+        response = self.s.get(self.BOOKINGS_URL)
 
         if response.status_code != 200:
             raise ValueError(response.json())
