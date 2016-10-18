@@ -1,4 +1,5 @@
 from coral_client import Client
+import base64
 
 '''
 seach-availability-provision-book-cancel-bookings
@@ -10,8 +11,10 @@ search_params = {'checkin': '2016-11-25', 'checkout': '2016-12-14', 'pax': '1',
                  'destination_code': '11260', 'client_nationality': 'tr',
                  'currency': 'USD'}
 
-a = Client('username', 'password')
-'''Please enter your own login credentials'''
+book_params = {'name': '1,Gokhan,Karaboga,adult'}
+
+a = Client(base64.b64decode('Z29raGFuLmthcmFib2dh'),
+           base64.b64decode('WWV0MTIzKys='))
 
 response_1 = a.search(search_params)
 product_code = response_1[1]['results'][0]['products'][0]['code']
@@ -25,7 +28,7 @@ response_3 = a.provision(product_code)
 book_code = response_3[1]["code"]
 print 'book code:', book_code
 
-response_4 = a.book(book_code)
+response_4 = a.book(book_code, book_params)
 cancel_code = response_4[1]['code']
 print 'book json object:', response_4, '\n'
 print 'cancel code:', cancel_code

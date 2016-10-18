@@ -1,5 +1,6 @@
 import unittest
 from coral_client import Client
+import base64
 
 search_params = {'checkin': '2017-01-28', 'checkout': '2017-01-30', 'pax': '1',
                  'destination_code': '14bc7', 'client_nationality': 'tr',
@@ -14,13 +15,16 @@ wrong_params = {'checkin': '2016-11-11', 'checkout': '2016-11-15',
                 'pax': '1',
                 'destination_code': '14bc7xyz', 'client_nationality': 'tr',
                 'currency': 'USD'}
+
+book_params = {'name': '1,Gokhan,Karaboga,adult'}
+
 '''
 In order to test search method with wrong parameters. There is no such
 destination code as above.
 '''
 
-a = Client('username', 'password')
-'''Please enter your own login credentials'''
+a = Client(base64.b64decode('Z29raGFuLmthcmFib2dh'),
+           base64.b64decode('WWV0MTIzKys='))
 
 search_response = a.search(search_params)
 search_response2 = a.search(search_params2)
@@ -71,7 +75,7 @@ class TestClass(unittest.TestCase):
 
     def test_book(self):
         book_code = self.provision_response[1]['code']
-        book_response = a.book(book_code)
+        book_response = a.book(book_code, book_params)
 
         self.assertEqual(book_response[0], 200)
         self.assertDictContainsSubset({'pay_at_hotel': False},
@@ -84,7 +88,7 @@ class TestClass(unittest.TestCase):
 
     def test_cancel(self):
         book_code2 = a.provision(product_code2)[1]['code']
-        cancel_code = a.book(book_code2)[1]['code']
+        cancel_code = a.book(book_code2, book_params)[1]['code']
         cancel_response = a.cancel(cancel_code)
 
         self.assertEqual(cancel_response

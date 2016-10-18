@@ -40,9 +40,9 @@ class Client(object):
 
         return response.status_code, response.json(), response
 
-    def book(self, provision_code):
+    def book(self, provision_code, book_params):
         response = requests.post(self.BOOK_URL + provision_code,
-                                 data={'name': '1,Gokhan,Karaboga,adult'},
+                                 data=book_params,
                                  auth=(self.username, self.password))
         if response.status_code != 200:
             raise ValueError(response.json())
