@@ -1,4 +1,5 @@
 from coral_client import Client
+import datetime
 
 '''
 seach-availability-provision-book-cancel-bookings
@@ -6,7 +7,21 @@ provision, book and cancel ----> POST
 search, availability and bookings ----> GET
 '''
 
-search_params = {'checkin': '2016-11-25', 'checkout': '2016-12-14', 'pax': '1',
+checkin_date = datetime.datetime.now() + datetime.timedelta(2 * 365 / 12)
+checkout_date = datetime.datetime.now() + datetime.timedelta(2.5 * 365 / 12)
+'''
+Checkin and Checkout dates are automatically assigned two and 2.5 months from
+the current day respectively
+'''
+
+checkin_param = '{0}-{1}-{2}'.format(checkin_date.year, checkin_date.month,
+                                     checkin_date.day)
+
+checkout_param = '{0}-{1}-{2}'.format(checkout_date.year, checkout_date.month,
+                                      checkout_date.day)
+
+search_params = {'checkin': checkin_param, 'checkout': checkout_param,
+                 'pax': '1',
                  'destination_code': '11260', 'client_nationality': 'tr',
                  'currency': 'USD'}
 

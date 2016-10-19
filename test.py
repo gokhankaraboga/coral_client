@@ -1,7 +1,38 @@
 import unittest
 from coral_client import Client
+import datetime
 
-search_params = {'checkin': '2017-01-28', 'checkout': '2017-01-30', 'pax': '1',
+checkin_date1 = datetime.datetime.now() + datetime.timedelta(2 * 365 / 12)
+checkout_date1 = datetime.datetime.now() + datetime.timedelta(2.1 * 365 / 12)
+
+'''
+Checkin and Checkout dates are automatically assigned 2 and 2.1 months from
+the current day respectively
+'''
+
+checkin_date2 = datetime.datetime.now() + datetime.timedelta(3 * 365 / 12)
+checkout_date2 = datetime.datetime.now() + datetime.timedelta(3.1 * 365 / 12)
+
+'''
+Checkin and checkout parameters for 2nd search
+'''
+
+checkin_param1 = '{0}-{1}-{2}'.format(checkin_date1.year, checkin_date1.month,
+                                      checkin_date1.day)
+
+checkout_param1 = '{0}-{1}-{2}'.format(checkout_date1.year,
+                                       checkout_date1.month,
+                                       checkout_date1.day)
+
+checkin_param2 = '{0}-{1}-{2}'.format(checkin_date2.year, checkin_date2.month,
+                                      checkin_date2.day)
+
+checkout_param2 = '{0}-{1}-{2}'.format(checkout_date2.year,
+                                       checkout_date2.month,
+                                       checkout_date2.day)
+
+search_params = {'checkin': checkin_param2, 'checkout': checkout_param2,
+                 'pax': '1',
                  'destination_code': '14bc7', 'client_nationality': 'tr',
                  'currency': 'USD'}
 
